@@ -1,0 +1,47 @@
+{
+  "name": "project-img-processing-api",
+  "version": "1.0.0",
+  "description": "Project 1 in Udacity Advanced full-stack web course",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "start": "nodemon src/index.ts",
+    "prettier": "prettier --config .prettierrc src/**/*.ts --write",
+    "build": "npx tsc",
+    "jasmine": "jasmine",
+    "test": "npm run build && npm run jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khaleed2002/img-processing-API-project.git"
+  },
+  "author": "Khaled",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khaleed2002/img-processing-API-project/issues"
+  },
+  "homepage": "https://github.com/khaleed2002/img-processing-API-project#readme",
+  "devDependencies": {
+    "@types/eslint": "^8.4.6",
+    "@types/express": "^4.17.13",
+    "@types/jasmine": "^4.3.0",
+    "@types/prettier": "^2.7.0",
+    "@types/sharp": "^0.30.5",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jasmine": "^4.4.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "supertest": "^6.2.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "sharp": "^0.31.0"
+  }
+}
