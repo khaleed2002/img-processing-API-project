@@ -2,7 +2,17 @@
 # Image processing API
 A project to resize images using Sharp API
 
-
+### used scripts
+  ##### npm run build 
+      to build project from Typescript to javascript
+  ##### npm run lint
+      to run eslint and check problems
+  ##### npm run prettier
+      to run formatter and correct code
+  ##### npm run start
+      to start local server using nodemon without building project
+  ##### npm run test
+      to test code specs using jasmine
 ## API Reference
 
 #### Get all items
