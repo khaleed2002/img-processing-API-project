@@ -1,9 +1,10 @@
 import express from 'express';
-import path from 'path/win32';
+import path from 'path';
 import sharp from 'sharp';
 import fs from 'fs';
 
-const route = express.Router();
+const folderPath:string = path.resolve(__dirname,'..','..','..');
+const route:express.Router = express.Router();
 export function fileExist(path: string): boolean {
   try {
     if (fs.existsSync(path)) {
@@ -19,8 +20,8 @@ export async function resizeImg(
   height: number
 ): Promise<string> {
   const thumbPath = path.join(
-    path.dirname(path.dirname(source)),
-    'img thumb',
+    folderPath,
+    'imgThumb',
     path.parse(source).name + `_thumb_${width}_${height}.jpg`
   );
   try {
@@ -31,20 +32,18 @@ export async function resizeImg(
   return thumbPath;
 }
 route.get('/', async (req, res) => {
-  const folderPath = path.resolve();
   const width = Number(req.query.width as string),
     height = Number(req.query.height as string);
 
   const imgPath = path.join(
     folderPath,
-    'src',
     'imgs',
-    `/${req.query.filename}.jpg`
+    `${req.query.filename}.jpg`
   );
   //check if image name is valid
   if (!fileExist(imgPath)) {
     return res.send(
-      "<h1 style='color:red;font-weight:bold;'>Image you selected is not found,<h1><p>add it first to src/imgs folder</p>"
+      "<h1 style='color:red;font-weight:bold;'>Image you selected is not found,<h1><p>add it first to imgs folder</p>"
     );
   }
   //check if user enter both width & height
@@ -70,8 +69,8 @@ route.get('/', async (req, res) => {
   }
 
   const thumbPath = path.join(
-    path.dirname(path.dirname(imgPath)),
-    'img thumb',
+    folderPath,
+    'imgThumb',
     path.parse(imgPath).name + `_thumb_${width}_${height}.jpg`
   );
   if (fileExist(thumbPath)) {
@@ -84,4 +83,5 @@ route.get('/', async (req, res) => {
     return res.sendFile(await resizeImg(imgPath, width, height));
   }
 });
+
 export default route;

@@ -39,36 +39,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var resize_1 = require("../routes/resize/resize");
-var path_1 = __importDefault(require("path"));
-var fs_1 = __importDefault(require("fs"));
-describe('Testing functions in resize file', function () {
-    var projectPath = path_1.default.resolve(__dirname, '..', '..');
-    describe('test file existance', function () {
-        it('if file is exist', function () {
-            //testing on package.json file
-            var packPath = path_1.default.join(projectPath, 'package.json');
-            expect((0, resize_1.fileExist)(packPath)).toBeTruthy();
-        });
-        it('if file is not exist', function () {
-            var falsePath = path_1.default.join(projectPath, 'pack.json');
-            expect((0, resize_1.fileExist)(falsePath)).toBeFalsy();
-        });
-    });
-    it('resizing an image', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var imgPath, newImgPath, _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    imgPath = path_1.default.join(projectPath, 'imgs', 'fjord.jpg');
-                    newImgPath = (0, resize_1.resizeImg)(imgPath, 500, 700);
-                    _a = expect;
-                    _b = resize_1.fileExist;
-                    return [4 /*yield*/, newImgPath];
+var supertest_1 = __importDefault(require("supertest"));
+var index_1 = __importDefault(require("../index"));
+//supertest code is from Udacity classroom
+var request = (0, supertest_1.default)(index_1.default);
+describe('Test endpoint responses', function () {
+    it('Test root response', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, request.get('/')];
                 case 1:
-                    _a.apply(void 0, [_b.apply(void 0, [(_c.sent())])]).toBeTruthy();
-                    //delete created image after finish testing
-                    fs_1.default.unlinkSync(path_1.default.join(path_1.default.resolve(), 'imgThumb', 'fjord_thumb_500_700.jpg'));
+                    response = _a.sent();
+                    expect(response.status).toEqual(200);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('gets the resize endpoint', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, request.get('/resize')];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toEqual(200);
                     return [2 /*return*/];
             }
         });

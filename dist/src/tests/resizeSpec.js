@@ -43,7 +43,7 @@ var resize_1 = require("../routes/resize/resize");
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 describe('Testing functions in resize file', function () {
-    var projectPath = path_1.default.resolve(__dirname, '..', '..');
+    var projectPath = path_1.default.resolve();
     describe('test file existance', function () {
         it('if file is exist', function () {
             //testing on package.json file
@@ -60,7 +60,7 @@ describe('Testing functions in resize file', function () {
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
-                    imgPath = path_1.default.join(projectPath, 'imgs', 'fjord.jpg');
+                    imgPath = path_1.default.join(projectPath, 'src', 'imgs', 'fjord.jpg');
                     newImgPath = (0, resize_1.resizeImg)(imgPath, 500, 700);
                     _a = expect;
                     _b = resize_1.fileExist;
@@ -68,7 +68,7 @@ describe('Testing functions in resize file', function () {
                 case 1:
                     _a.apply(void 0, [_b.apply(void 0, [(_c.sent())])]).toBeTruthy();
                     //delete created image after finish testing
-                    fs_1.default.unlinkSync(path_1.default.join(path_1.default.resolve(), 'imgThumb', 'fjord_thumb_500_700.jpg'));
+                    fs_1.default.unlinkSync(path_1.default.join(path_1.default.resolve(), 'src', 'img thumb', 'fjord_thumb_500_700.jpg'));
                     return [2 /*return*/];
             }
         });

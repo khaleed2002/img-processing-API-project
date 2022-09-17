@@ -65,7 +65,7 @@ function resizeImg(source, width, height) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    thumbPath = path_1.default.join(folderPath, 'imgThumb', path_1.default.parse(source).name + "_thumb_".concat(width, "_").concat(height, ".jpg"));
+                    thumbPath = path_1.default.join(folderPath, 'img thumb', path_1.default.parse(source).name + "_thumb_".concat(width, "_").concat(height, ".jpg"));
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
@@ -90,6 +90,7 @@ route.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, fu
             case 0:
                 width = Number(req.query.width), height = Number(req.query.height);
                 imgPath = path_1.default.join(folderPath, 'imgs', "".concat(req.query.filename, ".jpg"));
+                console.log(imgPath);
                 //check if image name is valid
                 if (!fileExist(imgPath)) {
                     return [2 /*return*/, res.send("<h1 style='color:red;font-weight:bold;'>Image you selected is not found,<h1><p>add it first to imgs folder</p>")];
@@ -108,7 +109,7 @@ route.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, fu
                 else if (isNaN(height)) {
                     return [2 /*return*/, res.send("<h1 style='color:red;font-weight:bold;'>height parameter should be a number<h1>")];
                 }
-                thumbPath = path_1.default.join(folderPath, 'imgThumb', path_1.default.parse(imgPath).name + "_thumb_".concat(width, "_").concat(height, ".jpg"));
+                thumbPath = path_1.default.join(folderPath, 'img thumb', path_1.default.parse(imgPath).name + "_thumb_".concat(width, "_").concat(height, ".jpg"));
                 if (!fileExist(thumbPath)) return [3 /*break*/, 1];
                 return [2 /*return*/, res.sendFile(thumbPath)];
             case 1:
